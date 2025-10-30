@@ -1,200 +1,68 @@
 // Mobile menu functionality
-// Product database
-const products = [
-    {
-        id: 1,
-        name: "Wavy Teddy Mirror",
-        category: "Bedroom Items",
-        price: 600,
-        image: "img/Mirror 1.jpeg"
-    },
-    {
-        id: 2,
-        name: "Electric Kettle",
-        category: "Kitchen",
-        price: 299,
-        image: "img/kettle1-removebg-preview.png"
-    },
-    {
-        id: 3,
-        name: "Decorative Ornament",
-        category: "Ornaments",
-        price: 519,
-        image: "img/ornanent1.jpg"
-    },
-    {
-        id: 4,
-        name: "Office Lamp",
-        category: "Lamps",
-        price: 921,
-        image: "img/lamp1.jpg"
-    },
-    {
-        id: 5,
-        name: "Flower Vase",
-        category: "Decoration",
-        price: 89,
-        image: "img/flowervase3.jpg"
-    },
-    {
-        id: 6,
-        name: "Storage Rack",
-        category: "Storage",
-        price: 199,
-        image: "img/storagerack1.jpg"
-    }
-    // Add more products as needed
-];
-
-// Cart Management
-class Cart {
-    constructor() {
-        this.items = JSON.parse(localStorage.getItem('cart')) || [];
-        this.updateCartCount();
-    }
-
-    addItem(productId, name, price, image, quantity = 1) {
-        const existingItem = this.items.find(item => item.id === productId);
-        
-        if (existingItem) {
-            existingItem.quantity += quantity;
-        } else {
-            this.items.push({
-                id: productId,
-                name: name,
-                price: price,
-                image: image,
-                quantity: quantity
-            });
-        }
-        
-        this.saveCart();
-        this.updateCartCount();
-        this.showNotification('Item added to cart!');
-    }
-
-    removeItem(productId) {
-        this.items = this.items.filter(item => item.id !== productId);
-        this.saveCart();
-        this.updateCartCount();
-    }
-
-    updateQuantity(productId, quantity) {
-        const item = this.items.find(item => item.id === productId);
-        if (item) {
-            item.quantity = quantity;
-            if (quantity <= 0) {
-                this.removeItem(productId);
-            } else {
-                this.saveCart();
-                this.updateCartCount();
-            }
-        }
-    }
-
-    saveCart() {
-        localStorage.setItem('cart', JSON.stringify(this.items));
-    }
-
-    updateCartCount() {
-        const cartCount = document.querySelector('.cart-count');
-        if (cartCount) {
-            const totalItems = this.items.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalItems;
-            cartCount.setAttribute('aria-label', `${totalItems} items in cart`);
-        }
-    }
-
-    showNotification(message) {
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.textContent = message;
-        document.body.appendChild(notification);
-
-        // Trigger animation
-        setTimeout(() => notification.classList.add('show'), 10);
-
-        // Remove notification
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => notification.remove(), 300);
-        }, 2000);
-    }
-}
-
-// Initialize cart
-const cart = new Cart();
-
-// User Authentication
-class UserAuth {
-    constructor() {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.updateAuthUI();
-    }
-
-    login(email, password) {
-        // Simulate API call
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // For demo purposes, accept any email/password
-                const user = {
-                    id: Date.now(),
-                    email: email,
-                    name: email.split('@')[0]
-                };
-                this.currentUser = user;
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                this.updateAuthUI();
-                resolve(user);
-            }, 1000);
-        });
-    }
-
-    logout() {
-        this.currentUser = null;
-        localStorage.removeItem('currentUser');
-        this.updateAuthUI();
-    }
-
-    updateAuthUI() {
-        const authButton = document.querySelector('.auth-button');
-        if (authButton) {
-            if (this.currentUser) {
-                authButton.textContent = `Hello, ${this.currentUser.name}`;
-                authButton.href = 'account.html';
-            } else {
-                authButton.textContent = 'Login / Sign Up';
-                authButton.href = 'login.html';
-            }
-        }
-    }
-}
-
-// Initialize authentication
-const auth = new UserAuth();
+// Helper to display Naira from kobo
+const toNaira = (kobo) => `₦${Math.round((Number(kobo) || 0) / 100).toLocaleString()}`;
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Initialize add to cart buttons
-    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            const productId = button.dataset.productId;
-            const productCard = button.closest('.product-card');
-            const name = productCard.querySelector('h3').textContent;
-            const price = parseFloat(productCard.querySelector('.product-info p').textContent.replace('$', ''));
-            const image = productCard.querySelector('img').src;
-            
-            cart.addItem(productId, name, price, image);
-        });
-    });
+    // Auth UI: personalize nav and handle logout
+    (async function initAuthUI() {
+        try {
+            const res = await fetch('/api/auth/me');
+            const me = res.ok ? await res.json() : null;
+            const nav = document.querySelector('.navbar nav .nav-links');
+            if (!nav) return;
 
-    // Handle product link clicks
-    document.querySelectorAll('.product-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            const productId = link.closest('.product-card').dataset.productId;
-            localStorage.setItem('selectedProduct', productId);
-        });
-    });
+            // Find existing auth link or placeholder
+            let authLink = nav.querySelector('a.auth-button');
+            if (!authLink) {
+                // Try to find any link that says signUp|Login
+                authLink = Array.from(nav.querySelectorAll('a')).find(a => /login|signup|signUp/i.test(a.textContent || '')) || null;
+                if (authLink) authLink.classList.add('auth-button');
+            }
+
+            if (me && me.email) {
+                // Replace auth link with greeting (links to account) and logout
+                const li = authLink ? authLink.closest('li') : document.createElement('li');
+                if (!li.parentElement) nav.appendChild(li);
+                li.innerHTML = '';
+                const greet = document.createElement('a');
+                greet.href = 'account.html';
+                greet.textContent = `Hello, ${me.name || me.email.split('@')[0]}`;
+                greet.className = 'auth-greeting';
+                const sep = document.createElement('span');
+                sep.textContent = ' • ';
+                sep.className = 'auth-sep';
+                const account = document.createElement('a');
+                account.href = 'account.html';
+                account.textContent = 'My Account';
+                account.className = 'auth-account';
+                const sep2 = document.createElement('span');
+                sep2.textContent = ' • ';
+                sep2.className = 'auth-sep';
+                const logout = document.createElement('a');
+                logout.href = '#';
+                logout.textContent = 'Logout';
+                logout.className = 'auth-logout';
+                logout.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    try {
+                        await fetch('/api/auth/logout', { method: 'POST' });
+                    } catch {}
+                    localStorage.removeItem('dulin_user');
+                    window.location.reload();
+                });
+                li.appendChild(greet);
+                li.appendChild(sep);
+                li.appendChild(account);
+                li.appendChild(sep2);
+                li.appendChild(logout);
+            } else {
+                // Ensure auth link points to login
+                if (authLink) authLink.setAttribute('href', 'login.html');
+            }
+        } catch (e) {
+            // ignore UI personalization failure
+        }
+    })();
     // Search functionality
     const searchInput = document.getElementById('search-input');
     const searchResults = document.getElementById('search-results');
@@ -209,9 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     <img src="${product.image}" alt="${product.name}">
                     <div class="result-info">
                         <h4>${product.name}</h4>
-                        <p>${product.category}</p>
+                        <p>${product.category || ''}</p>
                     </div>
-                    <div class="result-price">$${product.price}</div>
+                    <div class="result-price">${toNaira(product.price)}</div>
                 </div>
             `).join('');
         }
@@ -224,28 +92,52 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 200);
     }
 
-    function searchProducts(query) {
-        return products.filter(product => 
-            product.name.toLowerCase().includes(query.toLowerCase()) ||
-            product.category.toLowerCase().includes(query.toLowerCase())
-        );
+    let staticCache = null;
+    async function getStatic() {
+        if (staticCache) return staticCache;
+        try {
+            const res = await fetch('/static-products.json');
+            if (!res.ok) return [];
+            const data = await res.json();
+            staticCache = Array.isArray(data) ? data : [];
+        } catch (e) {
+            staticCache = [];
+        }
+        return staticCache;
     }
 
-    searchInput.addEventListener('input', (e) => {
+    async function searchProducts(query) {
+        const q = encodeURIComponent(query.trim());
+        const [resp, statics] = await Promise.all([
+            fetch(`/api/products?q=${q}`),
+            getStatic(),
+        ]);
+        const apiData = resp.ok ? await resp.json() : [];
+        const apiList = Array.isArray(apiData) ? apiData : [];
+        const qLower = decodeURIComponent(q).toLowerCase();
+        const staticMatches = (Array.isArray(statics) ? statics : []).filter(s =>
+            (s.name||'').toLowerCase().includes(qLower) || (s.category||'').toLowerCase().includes(qLower)
+        ).map(s => ({ id: s.id || null, name: s.name, category: s.category, image: s.image, price: (Number(s.price)||0)*100 }));
+        // Merge, prioritize API results, then static, limit to 10
+        const merged = [...apiList, ...staticMatches].slice(0, 10);
+        return merged;
+    }
+
+    searchInput.addEventListener('input', async (e) => {
         const query = e.target.value.trim();
         if (query.length >= 2) {
-            const results = searchProducts(query);
+            const results = await searchProducts(query);
             displayResults(results);
         } else {
             hideResults();
         }
     });
 
-    searchForm.addEventListener('submit', (e) => {
+    searchForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const query = searchInput.value.trim();
         if (query.length >= 2) {
-            const results = searchProducts(query);
+            const results = await searchProducts(query);
             displayResults(results);
         }
     });
@@ -261,12 +153,9 @@ document.addEventListener("DOMContentLoaded", () => {
     searchResults.addEventListener('click', (e) => {
         const resultItem = e.target.closest('.search-result-item');
         if (resultItem) {
-            const productId = resultItem.dataset.productId;
-            // You can redirect to the product page or show a modal
-            console.log(`Selected product: ${productId}`);
-            // For now, we'll just hide the results
-            hideResults();
-            searchInput.value = '';
+        const productId = resultItem.dataset.productId;
+        // Navigate to product details page
+        window.location.href = `product-details.html?id=${productId}`;
         }
     });
     const hamburger = document.querySelector('.hamburger');
@@ -397,27 +286,5 @@ accordions.forEach((accordion => {
 
     });
 }));
-
-// Newsletter Popup Trigger
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    document.getElementById("newsletterPopup").classList.add("active");
-  }, 6000); // show popup after 6 seconds
-});
-
-// Close popup
-document.querySelector(".close-popup").addEventListener("click", () => {
-  document.getElementById("newsletterPopup").classList.remove("active");
-});
-
-// Optional: Smooth scroll for all anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute("href")).scrollIntoView({
-      behavior: "smooth"
-    });
-  });
-});
 
 

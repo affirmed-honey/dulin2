@@ -19,7 +19,7 @@
                     <li role="none"><a href="Faq.html" role="menuitem">FAQ</a></li>
                     <li role="none"><a href="about.html" role="menuitem">About Us</a></li>
                     <li role="none"><a href="contact.html" role="menuitem">Contact</a></li>
-                    <li role="none"><a href="signUp.html" class="auth-button" role="menuitem">Login / Sign Up</a></li>
+                    <li role="none"><a href="login.html" class="auth-button" role="menuitem">Login / Sign Up</a></li>
                     <li class="cart-icon" role="none">
                         <a href="cart.html" role="menuitem" aria-label="Shopping Cart">
                             <i class="fas fa-shopping-cart" aria-hidden="true"></i>
@@ -126,6 +126,32 @@
     </div>
   </section>
 
+  <!-- Dynamic Products from API -->
+  <section class="furniture-section container">
+    <div class="filters">
+      <h2>All Products</h2>
+      <div class="filter-group">
+        <form id="products-search-form" class="search-bar" role="search" aria-label="Search products" onsubmit="return false;">
+          <input type="text" id="product-search" placeholder="Search products..." autocomplete="off" aria-label="Search products" />
+          <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <div id="products-search-results" class="search-results" aria-live="polite"></div>
+      </div>
+      <div class="sort-group">
+        <label for="sort">Sort:</label>
+        <select id="sort">
+          <option value="">Default</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="name">Name (A-Z)</option>
+        </select>
+      </div>
+    </div>
+    <div id="api-products-grid" class="products-grid" aria-live="polite">
+      <!-- Filled by products.js -->
+    </div>
+  </section>
+
     <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-inner container">
@@ -166,7 +192,9 @@
         <div class="bottom-note">© 2025 DULIN — All rights reserved</div>
     </footer>
 
-    <script src="main.js" defer></script>
+  <script src="main.js" defer></script>
+  <script src="cart.js" defer></script>
+  <script src="products.js" defer></script>
 </body>
 </html>
 

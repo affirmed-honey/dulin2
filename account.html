@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Account | DULIN</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .account-wrapper { max-width: 900px; margin: 60px auto 100px; padding: 0 16px; }
+    .account-header { display:flex; align-items:center; justify-content:space-between; margin-bottom: 24px; }
+    .account-card { background:#fff; border:1px solid #eee; border-radius:12px; padding:20px; margin-bottom:20px; box-shadow:0 6px 20px rgba(0,0,0,0.06); }
+    .account-card h3 { margin-bottom: 12px; }
+    .form-row { display:flex; gap:12px; flex-wrap:wrap; }
+    .form-row > * { flex:1 1 240px; }
+    .form-row input { width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; }
+    .btn-primary { background:#0a6434; color:#fff; border:none; border-radius:8px; padding:10px 16px; cursor:pointer; font-weight:600; }
+    .btn-primary:disabled { background:#9ad0b5; cursor:not-allowed; }
+    .alert { display:none; padding:10px 12px; border-radius:8px; margin-bottom:12px; font-size:14px; }
+    .alert.error { background:#ffe8e8; color:#b00020; border:1px solid #ffb3b3; }
+    .alert.success { background:#e8fff1; color:#075e30; border:1px solid #b3ffd1; }
+    .muted { color:#666; font-size:14px; }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <a href="index.html" class="logo">Dulin</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="Faq.html">FAQ</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="auth-button" href="login.html">Login / Sign Up</a></li>
+        <li class="cart-icon"><a href="cart.html"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+  </header>
+
+  <section class="hero small-hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>My Account</h1>
+      <p class="muted">Manage your profile and password</p>
+    </div>
+  </section>
+
+  <main class="account-wrapper">
+    <div id="guard-error" class="alert error"></div>
+
+    <div class="account-card" id="profile-card">
+      <h3>Profile</h3>
+      <div id="profile-success" class="alert success"></div>
+      <div id="profile-error" class="alert error"></div>
+      <div class="form-row">
+        <div>
+          <label for="name">Full name</label>
+          <input id="name" type="text" placeholder="Your name" />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="Email" readonly />
+        </div>
+      </div>
+      <div style="margin-top:12px;">
+        <button id="saveProfile" class="btn-primary">Save changes</button>
+      </div>
+    </div>
+
+    <div class="account-card" id="email-card">
+      <h3>Change Email</h3>
+      <div id="email-success" class="alert success"></div>
+      <div id="email-error" class="alert error"></div>
+      <div class="form-row">
+        <div>
+          <label for="newEmail">New email</label>
+          <input id="newEmail" type="email" placeholder="new@example.com" />
+        </div>
+        <div>
+          <label for="emailPassword">Current password</label>
+          <input id="emailPassword" type="password" placeholder="Current password" />
+        </div>
+      </div>
+      <div style="margin-top:12px;">
+        <button id="changeEmail" class="btn-primary">Change email</button>
+      </div>
+      <p class="muted">For security, we ask for your password to change your email.</p>
+    </div>
+
+    <div class="account-card" id="password-card">
+      <h3>Change Password</h3>
+      <div id="pwd-success" class="alert success"></div>
+      <div id="pwd-error" class="alert error"></div>
+      <div class="form-row">
+        <div>
+          <label for="currentPassword">Current password</label>
+          <input id="currentPassword" type="password" placeholder="Current password" />
+        </div>
+        <div>
+          <label for="newPassword">New password</label>
+          <input id="newPassword" type="password" placeholder="Min 6 characters" />
+        </div>
+        <div>
+          <label for="confirmPassword">Confirm new password</label>
+          <input id="confirmPassword" type="password" placeholder="Repeat new password" />
+        </div>
+      </div>
+      <div style="margin-top:12px;">
+        <button id="changePassword" class="btn-primary">Change password</button>
+      </div>
+    </div>
+
+    <div class="account-card" id="orders-card">
+      <h3>My Orders</h3>
+      <div id="orders-error" class="alert error"></div>
+      <div id="orders-empty" class="muted" style="display:none;">No orders yet.</div>
+      <div id="orders-list"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner container">
+      <div class="footer-col about">
+        <h4>DULIN</h4>
+        <p>Essentials for every home — thoughtful design, reliable appliances and everyday value.</p>
+      </div>
+      <div class="footer-col links">
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="products.html">All Products</a></li>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Deals</a></li>
+        </ul>
+      </div>
+      <div class="footer-col support">
+        <h5>Support</h5>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="about.html">Service Centers</a></li>
+          <li><a href="products.html">Store Locator</a></li>
+        </ul>
+      </div>
+      <div class="footer-col newsletter">
+        <h5>Newsletter</h5>
+        <p class="muted">Get the latest deals and product news</p>
+        <form id="footer-newsletter">
+          <input type="email" placeholder="Your email" required />
+          <button class="btn" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="bottom-note">© 2025 DULIN — All rights reserved</div>
+  </footer>
+
+  <script src="main.js" defer></script>
+  <script>
+    function show(el, msg) { el.textContent = msg; el.style.display = 'block'; }
+    function hide(el) { el.style.display = 'none'; }
+
+    async function fetchMe() {
+      const res = await fetch('/api/auth/me');
+      if (!res.ok) return null;
+      return res.json();
+    }
+
+    async function guard() {
+      const me = await fetchMe();
+      if (!me) {
+        const guardErr = document.getElementById('guard-error');
+        show(guardErr, 'You need to be logged in to view this page. Redirecting to login...');
+        setTimeout(() => { window.location.href = 'login.html?next=' + encodeURIComponent('account.html'); }, 800);
+        return null;
+      }
+      return me;
+    }
+
+    async function init() {
+      const me = await guard();
+      if (!me) return;
+      const name = document.getElementById('name');
+      const email = document.getElementById('email');
+      name.value = me.name || '';
+      email.value = me.email || '';
+
+      document.getElementById('saveProfile').addEventListener('click', async () => {
+        const success = document.getElementById('profile-success');
+        const error = document.getElementById('profile-error');
+        hide(success); hide(error);
+        const newName = name.value.trim();
+        try {
+          const res = await fetch('/api/auth/profile', {
+            method: 'PUT', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: newName })
+          });
+          if (!res.ok) { const data = await res.json().catch(()=>({error:'Update failed'})); throw new Error(data.error || 'Update failed'); }
+          const updated = await res.json();
+          show(success, 'Profile updated');
+        } catch (e) {
+          show(error, e.message || 'Update failed');
+        }
+      });
+
+      // Change email handler
+      document.getElementById('changeEmail').addEventListener('click', async () => {
+        const newEmail = document.getElementById('newEmail').value.trim();
+        const pwd = document.getElementById('emailPassword').value;
+        const success = document.getElementById('email-success');
+        const error = document.getElementById('email-error');
+        hide(success); hide(error);
+        if (!newEmail || !pwd) { show(error, 'Please provide your new email and current password'); return; }
+        if (!/^\S+@\S+\.\S+$/.test(newEmail)) { show(error, 'Please enter a valid email'); return; }
+        try {
+          const res = await fetch('/api/auth/change-email', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ currentPassword: pwd, newEmail })
+          });
+          if (!res.ok) { const data = await res.json().catch(()=>({error:'Change failed'})); throw new Error(data.error || 'Change failed'); }
+          const updated = await res.json();
+          document.getElementById('email').value = updated.email;
+          show(success, 'Email updated');
+        } catch (e) {
+          show(error, e.message || 'Change failed');
+        }
+      });
+
+      document.getElementById('changePassword').addEventListener('click', async () => {
+        const cur = document.getElementById('currentPassword');
+        const np = document.getElementById('newPassword');
+        const cp = document.getElementById('confirmPassword');
+        const success = document.getElementById('pwd-success');
+        const error = document.getElementById('pwd-error');
+        hide(success); hide(error);
+        if (!cur.value || !np.value || !cp.value) { show(error, 'Please fill all fields'); return; }
+        if (np.value.length < 6) { show(error, 'New password must be at least 6 characters'); return; }
+        if (np.value !== cp.value) { show(error, 'Passwords do not match'); return; }
+        try {
+          const res = await fetch('/api/auth/change-password', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ currentPassword: cur.value, newPassword: np.value })
+          });
+          if (!res.ok) { const data = await res.json().catch(()=>({error:'Change failed'})); throw new Error(data.error || 'Change failed'); }
+          show(success, 'Password changed');
+          cur.value = np.value = cp.value = '';
+        } catch (e) {
+          show(error, e.message || 'Change failed');
+        }
+      });
+
+      // Load my orders
+      async function loadOrders() {
+        const list = document.getElementById('orders-list');
+        const empty = document.getElementById('orders-empty');
+        const err = document.getElementById('orders-error');
+        list.innerHTML = '';
+        empty.style.display = 'none';
+        err.style.display = 'none';
+        try {
+          const res = await fetch('/api/orders/mine');
+          if (!res.ok) { const data = await res.json().catch(()=>({error:'Failed to load orders'})); throw new Error(data.error || 'Failed to load orders'); }
+          const orders = await res.json();
+          if (!Array.isArray(orders) || orders.length === 0) { empty.style.display = 'block'; return; }
+          const toNaira = (kobo) => `₦${Math.round((Number(kobo)||0)/100).toLocaleString()}`;
+          list.innerHTML = orders.map(o => {
+            const items = Array.isArray(o.items) ? o.items : [];
+            const itemsHtml = items.map(it => `<li>${it.quantity} x ${it.name} — ₦${Math.round((Number(it.priceAtPurchase)||0)/100).toLocaleString()}</li>`).join('');
+            return `
+              <div class="order" style="border:1px solid #eee; border-radius:10px; padding:12px; margin-bottom:10px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div>
+                    <strong>Order #${o.id}</strong>
+                    <div class="muted">${new Date(o.createdAt).toLocaleString()}</div>
+                  </div>
+                  <div>
+                    <span class="muted">Status:</span> <strong>${o.status}</strong>
+                  </div>
+                </div>
+                <ul style="margin:8px 0 0 16px;">${itemsHtml}</ul>
+                <div style="display:flex; gap:16px; margin-top:8px;">
+                  <div><span class="muted">Subtotal:</span> ${toNaira(o.subtotal)}</div>
+                  <div><span class="muted">Shipping:</span> ${toNaira(o.shipping)}</div>
+                  <div><span class="muted">Tax:</span> ${toNaira(o.tax)}</div>
+                  <div><strong>Total:</strong> ${toNaira(o.total)}</div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        } catch (e) {
+          err.textContent = e.message || 'Failed to load orders';
+          err.style.display = 'block';
+        }
+      }
+
+      loadOrders();
+    }
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

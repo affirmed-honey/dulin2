@@ -19,7 +19,7 @@
                 <li><a href="Faq.html">Faq</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="signUp.html">signUp|Login</a></li>
+                <li><a class="auth-button" href="login.html">Login / Sign Up</a></li>
                 <li class="cart-icon">
                     <a href="cart.html">
                         <i class="fas fa-shopping-cart"></i>
@@ -65,30 +65,22 @@
 
    <div class="products-grid">
       <!-- Example of 1 card (you can duplicate to make all 50) -->
-      <div class="product-card" data-category="All" data-product-id="furniture1">
-        <a href="product-details.html?id=furniture1" class="product-link">
-          <img src="img/furniture1.jpg" alt="alarm clock">
-          <div class="product-info">
-            <h3>Alarm Clock</h3>
-            <p>$750</p>
-          </div>
-        </a>
-        <button class="add-to-cart-btn" data-product-id="furniture1">
-          <i class="fas fa-cart-plus"></i> Add to Cart
-        </button>
+      <div class="product-card" data-category="All">
+        <img src="img/furniture1.jpg" alt="alarm clock">
+        <div class="product-info">
+          <h3>Alarm Clock</h3>
+          <p>$750</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
       </div>
 
-      <div class="product-card" data-category="All" data-product-id="furniture2">
-        <a href="product-details.html?id=furniture2" class="product-link">
-          <img src="img/furniture2.jpg" alt="Alarm Clock 2">
-          <div class="product-info">
-            <h3>Alarm Clock 2</h3>
-            <p>$900</p>
-          </div>
-        </a>
-        <button class="add-to-cart-btn" data-product-id="furniture2">
-          <i class="fas fa-cart-plus"></i> Add to Cart
-        </button>
+      <div class="product-card" data-category="All">
+        <img src="img/furniture2.jpg" alt="Alarm Clock 2">
+        <div class="product-info">
+          <h3>Alarm Clock 2</h3>
+          <p>$900</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
       </div>
 
       <div class="product-card" data-category="All">
@@ -504,3 +496,20 @@
 </body>
 </html>
 <script src="main.js" defer></script>
+<script src="cart.js" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.product-card .add-to-cart-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const card = e.currentTarget.closest('.product-card');
+        const name = card.querySelector('.product-info h3')?.textContent?.trim() || 'Item';
+        const img = card.querySelector('img')?.getAttribute('src') || '';
+        const priceText = card.querySelector('.product-info p')?.textContent || '0';
+        const num = parseInt(priceText.replace(/[^0-9]/g, ''), 10) || 0;
+        if (typeof window.addToCart === 'function') {
+          window.addToCart({ id: `${img}`, name, price: num, image: img });
+        }
+      });
+    });
+  });
+</script>

@@ -10,6 +10,14 @@ function updateCartCount() {
     }
 }
 
+// Ensure cart count shows correctly on all pages that include this file
+// Run once on load to reflect any items saved in localStorage
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', updateCartCount);
+} else {
+  updateCartCount();
+}
+
 // Add to cart function
 function addToCart(product) {
     const existingItem = cart.find(item => item.id === product.id);
