@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dulin | Create Account</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo">Dulin</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="Faq.html">FAQ</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a class="auth-button" href="login.html">Login / Sign Up</a></li>
+                <li class="cart-icon"><a href="cart.html"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+        <button class="hamburger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    </header>
+
+    <div class="auth-wrap">
+        <div class="auth-overlay"></div>
+        <div class="auth-card">
+            <div class="auth-logo"><span class="logo-wordmark">Dulin</span></div>
+            <p class="auth-subtitle">Create your account</p>
+
+            <form id="signupForm" novalidate>
+                <div id="formError" class="auth-error" role="alert"></div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="name" class="auth-label">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Jane Doe" required class="auth-input" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="auth-label">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" class="auth-input" />
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group password-wrap">
+                        <label for="password" class="auth-label">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Create a password" minlength="6" required autocomplete="new-password" class="auth-input" />
+                        <button type="button" class="toggle-password" aria-label="Show password" data-target="password">Show</button>
+                    </div>
+                    <div class="form-group password-wrap">
+                        <label for="confirmPassword" class="auth-label">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" minlength="6" required autocomplete="new-password" class="auth-input" />
+                        <button type="button" class="toggle-password" aria-label="Show password" data-target="confirmPassword">Show</button>
+                    </div>
+                </div>
+
+                <label class="auth-terms">
+                    <input type="checkbox" id="terms" required />
+                    I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+                </label>
+
+                <button type="submit" class="auth-btn" id="submitBtn">Create Account</button>
+            </form>
+
+            <div class="auth-footer">Already have an account? <a href="login.html">Log in</a></div>
+        </div>
+    </div>
+
+    <script>
+        // Preserve existing signup logic if present elsewhere; minimal inline for safety
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('signupForm');
+            const errorBox = document.getElementById('formError');
+            const toggleButtons = document.querySelectorAll('.toggle-password');
+
+            toggleButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetId = btn.getAttribute('data-target');
+                    const input = document.getElementById(targetId);
+                    if (!input) return;
+                    const isPw = input.type === 'password';
+                    input.type = isPw ? 'text' : 'password';
+                    btn.textContent = isPw ? 'Hide' : 'Show';
+                });
+            });
+
+            if (!form) return;
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                errorBox.style.display = 'none';
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const terms = document.getElementById('terms').checked;
+
+                if (!terms) {
+                    errorBox.textContent = 'Please accept the Terms and Privacy Policy.';
+                    errorBox.style.display = 'block';
+                    return;
+                }
+                if (password.length < 6) {
+                    errorBox.textContent = 'Password must be at least 6 characters.';
+                    errorBox.style.display = 'block';
+                    return;
+                }
+                if (password !== confirmPassword) {
+                    errorBox.textContent = 'Passwords do not match.';
+                    errorBox.style.display = 'block';
+                    return;
+                }
+
+                try {
+                    const res = await fetch('/api/auth/signup', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        credentials: 'include',
+                        body: JSON.stringify({ name, email, password })
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.error || 'Signup failed');
+                    window.location.href = 'account.html';
+                } catch (err) {
+                    errorBox.textContent = err.message || 'Signup failed';
+                    errorBox.style.display = 'block';
+                }
+            });
+        });
+    </script>
+    <script src="main.js" defer></script>
+</body>
+</html>

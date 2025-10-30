@@ -1,35 +1,201 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-commerce Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DULIN | Modern Interiors</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">DULIN</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="deals.html">Deals</a></li>
-            <li><a href="buynowpaylater.html">Buy Now Pay Later</a></li>
-            <li><a href="payment.html">Payment</a></li>
-            <li><a href="storelocators.html">Store Locators</a></li>
-            <li><a href="cart.html">Cart</a></li>
-            <li><a href="contactus.html">Contact Us</a></li>
-            <li><a href="services.html">Services</a></li>
-        </ul>
-        <div class="menu-toggle">☰</div>
-    </nav>
-    <section class="main-section">
-        <h1>Welcome to Dulin</h1>
-        <p>Discover the best household items including dining sets, kitchen equipment, and more.</p>
-        <!-- Add more home page content here -->
+    <!-- Header / Navbar -->
+        <header class="navbar">
+            <a href="index.html" class="logo" aria-label="Dulin Home">Dulin</a>
+            <nav aria-label="Main Navigation">
+                <ul class="nav-links" role="menubar">
+                    <li role="none"><a href="index.html" role="menuitem" aria-current="page">Home</a></li>
+                    <li role="none"><a href="products.html" role="menuitem">Products</a></li>
+                    <li role="none"><a href="Faq.html" role="menuitem">FAQ</a></li>
+                    <li role="none"><a href="about.html" role="menuitem">About Us</a></li>
+                    <li role="none"><a href="contact.html" role="menuitem">Contact</a></li>
+                    <li role="none"><a href="login.html" class="auth-button" role="menuitem">Login / Sign Up</a></li>
+                    <li class="cart-icon" role="none">
+                        <a href="cart.html" role="menuitem" aria-label="Shopping Cart">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                            <span class="cart-count" aria-label="0 items in cart">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <button class="hamburger" aria-label="Menu" aria-controls="nav-links" aria-expanded="false">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+        </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>Welcome to Dulin <br>where style find its home </h1>
+            <p>Essential for every home...</p>
+            
+            <form class="search-bar" id="search-form">
+                <input type="text" id="search-input" placeholder="Search item..." autocomplete="off" />
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+            <div id="search-results" class="search-results"></div>
+        </div>
+
     </section>
-    <script src="script.js"></script>
+    
+    
+
+    <!-- Best Selling Products Section -->
+<section class="products">
+    <h2>Our Top Collections</h2>
+    <div class="product-categories">
+        <a href="furniture.html" class="active" data-category="furniture" id="furniture-btn">furniture</button>
+        <a href="lamps.html" class="active" data-category="lamps" id="lamps-btn">lamps</button>
+            <a href="electronic.html" class="active" data-category="electronic" id="electronic-btn">electronic</button>
+                <a href="ornaments.html" class="active" data-category="ornaments" id="furniture-btn">ornaments</button>
+    </div>
+
+    <div class="product-carousel">
+        <button class="prev"><i class="fa-solid fa-chevron-left"></i></button>
+
+        <div class="product-list">
+            <div class="product-card">
+                <img src="img/chairofficenobg.png" alt="Furniture">
+                <p class="category">Chair</p>
+                <h3>Sakarias Armchair</h3>
+                <div class="rating">★★★★★</div>
+                <p class="price">$392</p>
+                <button class="add"><i class="fa-solid fa-plus"></i></button>
+            </div>
+
+            <div class="product-card">
+                <img src="img/kettle1-removebg-preview.png" alt="Electronics">
+                <p class="category">Kettle</p>
+                <h3>Baltsar Chair</h3>
+                <div class="rating">★★★★★</div>
+                <p class="price">$299</p>
+                <button class="add"><i class="fa-solid fa-plus"></i></button>
+            </div>
+
+            <div class="product-card">
+                <img src="img/ornanent1.jpg" alt="Ornaments">
+                <p class="category">Ornaments</p>
+                <h3>Anjay Chair</h3>
+                <div class="rating">★★★★★</div>
+                <p class="price">$519</p>
+                <button class="add"><i class="fa-solid fa-plus"></i></button>
+            </div>
+
+            <div class="product-card">
+                <img src="img/lamp1.jpg" alt="Lamp">
+                <p class="category">Office Lamp</p>
+                <h3>Nyantuy Chair</h3>
+                <div class="rating">★★★★★</div>
+                <p class="price">$921</p>
+                <button class="add"><i class="fa-solid fa-plus"></i></button>
+            </div>
+        </div>
+
+        <button class="next"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <a href="products.html" class="view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+    <p class="section-label">TESTIMONIALS</p>
+    <h2>Our Client Reviews</h2>
+
+    <div class="testimonial-carousel">
+        <button class="t-prev"><i class="fa-solid fa-chevron-left"></i></button>
+
+        <div class="testimonial-list">
+            <!-- Card 1 -->
+            <div class="testimonial-card" style="background-image: url('https://via.placeholder.com/400x300?text=Testimonial+1');">
+                <div class="testimonial-content">
+                    <img src="" alt="Bang Upin" class="client-img">
+                    <h3>Chioma Akpotha</h3>
+                    <p class="client-role">Lagos, Nigeria.</p>
+                    <p class="client-review">“I ordered a set of dining chairs from your store and I must say, the quality exceeded my expectations! <br>The delivery was right on time and the packaging was very secure. <br>My dining area looks so much more elegant now <br> I’ll definitely be coming back for more furniture.”</p>
+                    <div class="rating">★★★★★</div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="testimonial-card" style="background-image: url('https://via.placeholder.com/400x300?text=Testimonial+2');">
+                <div class="testimonial-content">
+                    <img src="" alt="Ibuk Sukijan" class="client-img">
+                    <h3>Michael Banks</h3>
+                    <p class="client-location">Abuja, Nigeria.</p>
+                    <p class="client-review">“The coffee table I purchased was exactly as shown on the website. <br>I love the sleek design and sturdy build. <br> Customer service was also quick to respond when I had a question about assembly. I’m giving 4 stars only because delivery took an extra day, but otherwise, everything was perfect!”</p>
+                    <div class="rating">★★★★★</div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="testimonial-card" style="background-image: url('https://via.placeholder.com/400x300?text=Testimonial+3');">
+                <div class="testimonial-content">
+                    <img src="" alt="Mpok Ina" class="client-img">
+                    <h3>Janet Odesola</h3>
+                    <p class="client-role">Karyawan Swasta</p>
+                    <p class="client-review">“I’m super impressed with my order! <br> The lamp I bought adds such a warm touch to my living room. <br>The website was easy to navigate, checkout was smooth, and the updates I received made the whole process stress-free.Highly recommend this store!”</p>
+                    <div class="rating">★★★★★</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="t-next"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner container">
+            <div class="footer-col about">
+                <h4>DULIN</h4>
+                <p>Essentials for every home — thoughtful design, reliable appliances and everyday value.</p>
+            </div>
+            <div class="footer-col links">
+                <h5>Shop</h5>
+                <ul>
+                    <li><a href="products.html">All Products</a></li>
+                    <li><a href="new-arrivals.html">New Arrivals</a></li>
+                    <li><a href="all-deals.html">Deals</a></li>
+                </ul>
+            </div>
+            <div class="footer-col support">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about.html">Service Centers</a></li>
+                    <li><a href="products.html">Store Locator</a></li>
+                </ul>
+            </div>
+            <div class="footer-col newsletter">
+                <h5>Newsletter</h5>
+                <p class="muted">Get the latest deals and product news</p>
+                <form id="footer-newsletter">
+                    <input type="email" placeholder="Your email" required>
+                    <button class="btn" type="submit">Subscribe</button>
+                </form>
+                <div class="socials">
+                  <a href="https://www.threads.com/@dulingifts?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer" aria-label="Follow us on threads"><i class="fab fa-threads"></i></a>
+                  <a href="https://www.instagram.com/dulinfurniture?igsh=MTY3ZWh5ZjR4dGtocA==" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                  <a href="https://twitter.com/dulininteriors" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-note">© 2025 DULIN — All rights reserved</div>
+    </footer>
 </body>
 </html>
+<script src="main.js" defer></script>
+<script src="cart.js" defer></script>
 
 

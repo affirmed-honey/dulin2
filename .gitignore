@@ -1,26 +1,42 @@
-# macOS system files
+# Node and general
+node_modules/
+.env
+.env.*
 .DS_Store
-.AppleDouble
-.LSOverride
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# Icon must end with two \r
-Icon
+# Logs
+logs
+*.log
+*.log.*
 
-# Thumbnails
-._*
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
+# Coverage
+coverage/
+.nyc_output
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# Build output
+dist/
+build/
+.parcel-cache
+.next/
+out/
+
+# Prisma
+prisma/dev.db*
+prisma/*.db*
+
+# VSCode
+.vscode/
+
+# OS
+Thumbs.db
+ehthumbs.db
