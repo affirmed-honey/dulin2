@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - DULIN</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .cart-page {
+            padding: 40px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .cart-empty i {
+            font-size: 48px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .cart-items {
+            margin-bottom: 40px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 2fr 1fr 1fr auto;
+            gap: 20px;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .item-details h3 {
+            margin: 0 0 8px;
+        }
+
+        .item-price {
+            color: #0a6434;
+            font-weight: 600;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-controls button {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .quantity-controls input {
+            width: 50px;
+            height: 32px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .remove-item {
+            color: #ff4444;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .cart-summary {
+            background: #f9f9f9;
+            padding: 24px;
+            border-radius: 8px;
+            position: sticky;
+            top: 20px;
+        }
+
+        .cart-summary h2 {
+            margin-bottom: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-row.total {
+            font-size: 1.2em;
+            font-weight: 600;
+            border-bottom: none;
+            margin-top: 20px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            background: #0a6434;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: #085129;
+        }
+
+        .continue-shopping {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .continue-shopping a {
+            color: #0a6434;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+                gap: 15px;
+            }
+
+            .item-price {
+                grid-column: 2;
+            }
+
+            .quantity-controls {
+                grid-column: 2;
+            }
+
+            .remove-item {
+                grid-column: 1 / -1;
+                justify-self: end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <a href="index.html" class="logo" aria-label="Dulin Home">Dulin</a>
+        <nav aria-label="Main Navigation">
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                <li role="none"><a href="products.html" role="menuitem">Products</a></li>
+                <li role="none"><a href="Faq.html" role="menuitem">FAQ</a></li>
+                <li role="none"><a href="about.html" role="menuitem">About Us</a></li>
+                <li role="none"><a href="contact.html" role="menuitem">Contact</a></li>
+                <li role="none"><a href="signUp.html" class="auth-button" role="menuitem">Login / Sign Up</a></li>
+                <li class="cart-icon" role="none">
+                    <a href="cart-page.html" role="menuitem" aria-label="Shopping Cart">
+                        <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                        <span class="cart-count" aria-label="0 items in cart">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <button class="hamburger" aria-label="Menu" aria-controls="nav-links" aria-expanded="false">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+    </header>
+
+    <main class="cart-page">
+        <h1>Your Cart</h1>
+        
+        <div class="cart-content">
+            <div class="cart-empty" id="cart-empty" style="display: none;">
+                <i class="fas fa-shopping-cart"></i>
+                <h2>Your cart is empty</h2>
+                <p>Looks like you haven't added any items to your cart yet.</p>
+                <a href="products.html" class="btn">Continue Shopping</a>
+            </div>
+
+            <div class="cart-container" id="cart-container">
+                <div class="cart-items" id="cart-items">
+                    <!-- Cart items will be inserted here -->
+                </div>
+
+                <div class="cart-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="shipping">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax (7%)</span>
+                        <span id="tax">$0.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                    <button class="checkout-btn" id="checkout-btn">
+                        <i class="fas fa-lock"></i> Proceed to Checkout
+                    </button>
+                    <div class="continue-shopping">
+                        <a href="products.html">
+                            <i class="fas fa-arrow-left"></i> Continue Shopping
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner container">
+            <div class="footer-col about">
+                <h4>DULIN</h4>
+                <p>Essentials for every home — thoughtful design, reliable appliances and everyday value.</p>
+            </div>
+            <div class="footer-col links">
+                <h5>Shop</h5>
+                <ul>
+                    <li><a href="products.html">All Products</a></li>
+                    <li><a href="new-arrivals.html">New Arrivals</a></li>
+                    <li><a href="all-deals.html">Deals</a></li>
+                </ul>
+            </div>
+            <div class="footer-col support">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about.html">Service Centers</a></li>
+                    <li><a href="products.html">Store Locator</a></li>
+                </ul>
+            </div>
+            <div class="footer-col newsletter">
+                <h5>Newsletter</h5>
+                <p class="muted">Get the latest deals and product news</p>
+                <form id="footer-newsletter">
+                    <input type="email" placeholder="Your email" required>
+                    <button class="btn" type="submit">Subscribe</button>
+                </form>
+                <div class="socials">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-note">© 2025 DULIN — All rights reserved</div>
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html>
