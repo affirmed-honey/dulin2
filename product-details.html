@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DULIN | Modern Interiors</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  
+  <!-- Header / Navbar -->
+        <header class="navbar">
+        <div class="logo">DULIN</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="Faq.html">Faq</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="signUp.html">signUp|Login</a></li>
+                <li class="cart-icon">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container product-details-page">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> > 
+            <a href="furniture.html">Furniture</a> > 
+            <span class="product-name">Loading...</span>
+        </div>
+
+        <div class="product-details">
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="" alt="Product Image" id="main-product-image">
+                </div>
+                <div class="thumbnail-list">
+                    <!-- Thumbnails will be added here -->
+                </div>
+            </div>
+            
+            <div class="product-info-details">
+                <h1 class="product-title">Loading...</h1>
+                <div class="product-price">$0.00</div>
+                <div class="product-description"></div>
+                
+                <div class="product-options">
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantity:</label>
+                        <div class="quantity-controls">
+                            <button class="qty-btn minus">-</button>
+                            <input type="number" id="quantity" value="1" min="1" max="99">
+                            <button class="qty-btn plus">+</button>
+                        </div>
+                    </div>
+                    
+                    <button class="add-to-cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        Add to Cart
+                    </button>
+                </div>
+
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-truck"></i>
+                        <span>Free shipping on orders over $500</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-undo"></i>
+                        <span>30-day return policy</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>2-year warranty</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner container">
+            <div class="footer-col about">
+                <h4>DULIN</h4>
+                <p>Essentials for every home — thoughtful design, reliable appliances and everyday value.</p>
+            </div>
+            <div class="footer-col links">
+                <h5>Shop</h5>
+                <ul>
+                    <li><a href="products.html">All Products</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Deals</a></li>
+                </ul>
+            </div>
+            <div class="footer-col support">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about.html">Service Centers</a></li>
+                    <li><a href="products.html">Store Locator</a></li>
+                </ul>
+            </div>
+            <div class="footer-col newsletter">
+                <h5>Newsletter</h5>
+                <p class="muted">Get the latest deals and product news</p>
+                <form id="footer-newsletter">
+                    <input type="email" placeholder="Your email" required>
+                    <button class="btn" type="submit">Subscribe</button>
+                </form>
+                <div class="socials">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-note">© 2025 DULIN — All rights reserved</div>
+    </footer>
+
+    <script src="main.js" defer></script>
+    <script src="cart.js" defer></script>
+    <script src="product-details.js" defer></script>
+</body>
+</html>

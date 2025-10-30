@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>FAQ</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+<!--
+    <style>
+      .image-container {
+        border: 1px solid black;
+        align-items: center;
+        width: fit-content;
+        height: 50%;
+
+      }
+
+      .landing img {
+        align-items: center;
+        width: fit-content;
+        height: 50%; 
+      }
+
+
+    </style>
+    </head>
+  -->
+<body>
+
+  <div class="image-container"></div>
+
+  <img class="img" src="img/faqbg.jpg" id="landing img" alt="novelty pic" width="50px" height="20px">
+  </div>
+
+    <h1>FAQ - Dulin Customer Service</h1>  
+
+    <button class="accordion"> What kinds of products do you sell?</button>
+<div class="panel"> 
+  <p> We possess a treasure trove of items ranging from stunning furniture pieces, to delightful ornaments, household essentials, and so much more.</p> 
+</div>
+    
+    <button class="accordion"> Where are your stores located?</button>
+<div class="panel"> 
+  <p>We have a physical store located 114 FUNSHO WILLIAMS AVENUE, IPONRI LAGOS, NIGERIA.</p> 
+</div>
+
+<button class="accordion"> What are your business hours during the week?</button>
+<div class="panel"> 
+  <p>We are open between the hours of 9AM-6PM Mondays through Saturdays.</p> 
+</div>
+
+<button class="accordion"> Do you do at-home or office deliveries?</button>
+<div class="panel"> 
+  <p> Yes, we offer deliver nationwide, and offer free delivery to places within Lagos.</p> 
+</div>
+
+<button class="accordion"> What is your return policy for your products? </button>
+<div class="panel"> 
+  <p> Any product purchased can be returned within a period of 30 days, provided that said product has not been removed from its packaging.</p> 
+</div>
+
+<button class="accordion"> How do I track my order?</button>
+<div class="panel"> 
+  <p>After your order is shipped, you will receive a tracking number via email. You can also log into your account and check the order status in the “Orders” section.</p> 
+</div>
+
+<button class="accordion"> How can I contact you?</button>
+<div class="panel"> 
+  <p> You can chat with us on whatsapp +23408177774693.</p> 
+</div>
+
+<script src='main.js'></script>
+</body>
+</html>
+
+<style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+      font-family: Arial, sans-serif;
+       background: #fff;
+      padding: 40px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #0a6434;
+    }
+
+  .img {
+    width: 1300px;
+    height: 400px;
+    align-self: center;
+  }
+
+    /* Accordion button */
+    .accordion {
+      background-color: #111;
+      color: #fff;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      font-size: 18px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .accordion:hover {
+      background-color: #444;
+    }
+
+    /* Active state */
+    .accordion.active {
+       background-color: grey;
+    }
+
+    /* Panel (hidden content) */
+    .panel {
+      max-height: 0;
+      overflow: hidden;
+      background-color: white;
+      border-radius: 0 0 8px 8px;
+      transition: max-height 0.4s ease-out, padding 0.3s ease;
+      padding: 0 18px;
+      margin-bottom: 10px;
+    }
+
+    .panel p {
+      margin: 15px 0;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .image-container {
+      box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.3);
+      border: 5px solid #fff;
+
+    }
+
+    /* Define the loading screen 
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transition: opacity 0.5s ease-in-out;
+}
+*/
+
+/* Define the loaded state 
+.loaded .loading-screen {
+  opacity: 0;
+  pointer-events: none;
+}
+  */
+
+  @keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-transition {
+  animation: fadeIn 0.5s ease-in-out;
+}
+</style>

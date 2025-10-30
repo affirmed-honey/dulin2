@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DULIN | Modern Interiors</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<!-- Header / Navbar -->
+        <header class="navbar">
+        <nav>
+                    <a href="index.html">Dulin</a>
+                </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="Faq.html">Faq</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="signUp.html">signUp|Login</a></li>
+                <li class="cart-icon">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+  <!-- Hero -->
+  <section class="hero small-hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Furniture Collection</h1>
+      <p>Discover our range of thoughtfully designed furniture pieces.</p>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <main class="container" style="padding: 40px 5%;">
+    <div class="filters">
+      <div class="filter-group">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="SittingRoom">SittingRoom</button>
+        <button class="filter-btn" data-category="Bedroom">Bedroom</button>
+        <button class="filter-btn" data-category="Dining">Dining</button>
+        <button class="filter-btn" data-category="Office">Office</button>
+        <button class="filter-btn" data-category="Kids">Kids</button>
+      </div>
+      <div class="sort-group">
+        <select id="sort-select">
+          <option value="default">Sort by: Featured</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+    </div>
+
+   <div class="products-grid">
+      <!-- Example of 1 card (you can duplicate to make all 50) -->
+      <div class="product-card" data-category="All">
+        <img src="img/furniture1.jpg" alt="alarm clock">
+        <div class="product-info">
+          <h3>Alarm Clock</h3>
+          <p>$750</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture2.jpg" alt="Alarm Clock 2">
+        <div class="product-info">
+          <h3>Alarm Clock 2</h3>
+          <p>$900</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture10.jpg" alt="Simple Wall clock">
+        <div class="product-info">
+          <h3>Simple Wall clock</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture11.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture12.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture13.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture14.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture15.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture16.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture17.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture18.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture19.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture20.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture21.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture22.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture23.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture24.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture25.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture26.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture27.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture28.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture29.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture3.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture30.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture31.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture32.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture33.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture34.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture35.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture36.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture39.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture37.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture38.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture4.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture40.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture41.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture42.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture43.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture5.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture6.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture7.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture8.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="All">
+        <img src="img/furniture9.jpg" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner container">
+            <div class="footer-col about">
+                <h4>DULIN</h4>
+                <p>Essentials for every home — thoughtful design, reliable appliances and everyday value.</p>
+            </div>
+            <div class="footer-col links">
+                <h5>Shop</h5>
+                <ul>
+                    <li><a href="products.html">All Products</a></li>
+                    <li><a href="new-arrivals.html">New Arrivals</a></li>
+                    <li><a href="all-deals.html">Deals</a></li>
+                </ul>
+            </div>
+            <div class="footer-col support">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about.html">Service Centers</a></li>
+                    <li><a href="products.html">Store Locator</a></li>
+                </ul>
+            </div>
+            <div class="footer-col newsletter">
+                <h5>Newsletter</h5>
+                <p class="muted">Get the latest deals and product news</p>
+                <form id="footer-newsletter">
+                    <input type="email" placeholder="Your email" required>
+                    <button class="btn" type="submit">Subscribe</button>
+                </form>
+                <div class="socials">
+                  <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                  <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-note">© 2025 DULIN — All rights reserved</div>
+    </footer>
+</body>
+</html>
+<script src="main.js" defer></script>

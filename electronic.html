@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DULIN | Modern Interiors</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<!-- Header / Navbar -->
+        <header class="navbar">
+        <nav>
+                    <a href="index.html">Dulin</a>
+                </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="Faq.html">Faq</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="signUp.html">signUp|Login</a></li>
+                <li class="cart-icon">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+  <!-- Hero -->
+  <section class="hero small-hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Kitchen Collection</h1>
+      <p>Discover our range of thoughtfully designed furniture pieces.</p>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <main class="container" style="padding: 40px 5%;">
+    <div class="filters">
+      <div class="filter-group">
+        <button class="filter-btn active" data-category="all">All</button>
+      </div>
+      <div class="sort-group">
+        <select id="sort-select">
+          <option value="default">Sort by: Featured</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="products-grid">
+      <!-- Example of 1 card (you can duplicate to make all 50) -->
+      <div class="product-card" data-category="SittingRoom">
+        <img src="img/chairofficenobg.png" alt="Sofa Set">
+        <div class="product-info">
+          <h3>Luxury Sofa Set</h3>
+          <p>$750</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="Bedroom">
+        <img src="https://images.unsplash.com/photo-1600607687920-4e54afcdf8a3?auto=format&fit=crop&w=500&q=80" alt="Bed Frame">
+        <div class="product-info">
+          <h3>King Size Bed Frame</h3>
+          <p>$900</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+
+      <div class="product-card" data-category="Dining">
+        <img src="https://images.unsplash.com/photo-1616628186326-4b57eab2416e?auto=format&fit=crop&w=500&q=80" alt="Dining Table">
+        <div class="product-info">
+          <h3>Wooden Dining Set</h3>
+          <p>$600</p>
+        </div>
+        <button class="add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+      </div>
+      <!-- Duplicate cards until all 50 are displayed -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner container">
+            <div class="footer-col about">
+                <h4>DULIN</h4>
+                <p>Essentials for every home — thoughtful design, reliable appliances and everyday value.</p>
+            </div>
+            <div class="footer-col links">
+                <h5>Shop</h5>
+                <ul>
+                    <li><a href="products.html">All Products</a></li>
+                    <li><a href="new-arrivals.html">New Arrivals</a></li>
+                    <li><a href="all-deals.html">Deals</a></li>
+                </ul>
+            </div>
+            <div class="footer-col support">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about.html">Service Centers</a></li>
+                    <li><a href="products.html">Store Locator</a></li>
+                </ul>
+            </div>
+            <div class="footer-col newsletter">
+                <h5>Newsletter</h5>
+                <p class="muted">Get the latest deals and product news</p>
+                <form id="footer-newsletter">
+                    <input type="email" placeholder="Your email" required>
+                    <button class="btn" type="submit">Subscribe</button>
+                </form>
+                <div class="socials">
+                  <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                  <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-note">© 2025 DULIN — All rights reserved</div>
+    </footer>
+</body>
+</html>
+<script src="main.js" defer></script>
