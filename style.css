@@ -469,6 +469,177 @@ a.product-categories{
     text-decoration: underline;
 }
 
+
+/* Featured Categories */
+.featured-categories {
+  text-align: center;
+  padding: 80px 20px;
+  background: #fafafa;
+}
+.featured-categories h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.category-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.category-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+.category-card h3 {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  color: #fff;
+  font-size: 1.2rem;
+}
+.category-card:hover {
+  transform: scale(1.05);
+}
+
+/* Why Choose Us */
+.why-choose-us {
+  text-align: center;
+  padding: 80px 20px;
+  background: #fff;
+}
+.why-choose-us .features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+.feature {
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+}
+.feature i {
+  font-size: 2rem;
+  color: #c89b6d;
+  margin-bottom: 15px;
+}
+.feature:hover {
+  transform: translateY(-5px);
+}
+
+/* Deals Section */
+.special-deals {
+  padding: 80px 20px;
+  text-align: center;
+  background: #f8f3ee;
+}
+.deal-carousel {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.deal-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 260px;
+  padding: 15px;
+  transition: transform 0.3s ease;
+}
+.deal-card img {
+  width: 100%;
+  border-radius: 12px;
+}
+.deal-card:hover {
+  transform: translateY(-8px);
+}
+.old-price {
+  text-decoration: line-through;
+  color: #888;
+}
+.new-price {
+  color: #c89b6d;
+  font-weight: bold;
+}
+.buy-now {
+  background: #c89b6d;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.buy-now:hover {
+  background: #a57952;
+}
+
+/* Newsletter Popup */
+.newsletter-popup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.newsletter-popup.active {
+  display: flex;
+}
+.popup-content {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 400px;
+  position: relative;
+}
+.popup-content h2 {
+  margin-bottom: 10px;
+}
+.popup-content form {
+  display: flex;
+  margin-top: 20px;
+}
+.popup-content input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px 0 0 8px;
+}
+.popup-content button {
+  background: #c89b6d;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+}
+.close-popup {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+
 /* Testimonials Section */
 .testimonials {
     text-align: center;
@@ -553,7 +724,7 @@ a.product-categories{
     color: #000;
     font-size: 1rem;
     font-weight: 600;
-    margin-top: 10px;
+    margin-top: 10px 0 5px;
 }
 
 .client-role {

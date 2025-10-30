@@ -46,7 +46,155 @@ const products = [
     // Add more products as needed
 ];
 
+// Cart Management
+class Cart {
+    constructor() {
+        this.items = JSON.parse(localStorage.getItem('cart')) || [];
+        this.updateCartCount();
+    }
+
+    addItem(productId, name, price, image, quantity = 1) {
+        const existingItem = this.items.find(item => item.id === productId);
+        
+        if (existingItem) {
+            existingItem.quantity += quantity;
+        } else {
+            this.items.push({
+                id: productId,
+                name: name,
+                price: price,
+                image: image,
+                quantity: quantity
+            });
+        }
+        
+        this.saveCart();
+        this.updateCartCount();
+        this.showNotification('Item added to cart!');
+    }
+
+    removeItem(productId) {
+        this.items = this.items.filter(item => item.id !== productId);
+        this.saveCart();
+        this.updateCartCount();
+    }
+
+    updateQuantity(productId, quantity) {
+        const item = this.items.find(item => item.id === productId);
+        if (item) {
+            item.quantity = quantity;
+            if (quantity <= 0) {
+                this.removeItem(productId);
+            } else {
+                this.saveCart();
+                this.updateCartCount();
+            }
+        }
+    }
+
+    saveCart() {
+        localStorage.setItem('cart', JSON.stringify(this.items));
+    }
+
+    updateCartCount() {
+        const cartCount = document.querySelector('.cart-count');
+        if (cartCount) {
+            const totalItems = this.items.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            cartCount.setAttribute('aria-label', `${totalItems} items in cart`);
+        }
+    }
+
+    showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        // Trigger animation
+        setTimeout(() => notification.classList.add('show'), 10);
+
+        // Remove notification
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 2000);
+    }
+}
+
+// Initialize cart
+const cart = new Cart();
+
+// User Authentication
+class UserAuth {
+    constructor() {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.updateAuthUI();
+    }
+
+    login(email, password) {
+        // Simulate API call
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // For demo purposes, accept any email/password
+                const user = {
+                    id: Date.now(),
+                    email: email,
+                    name: email.split('@')[0]
+                };
+                this.currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                this.updateAuthUI();
+                resolve(user);
+            }, 1000);
+        });
+    }
+
+    logout() {
+        this.currentUser = null;
+        localStorage.removeItem('currentUser');
+        this.updateAuthUI();
+    }
+
+    updateAuthUI() {
+        const authButton = document.querySelector('.auth-button');
+        if (authButton) {
+            if (this.currentUser) {
+                authButton.textContent = `Hello, ${this.currentUser.name}`;
+                authButton.href = 'account.html';
+            } else {
+                authButton.textContent = 'Login / Sign Up';
+                authButton.href = 'login.html';
+            }
+        }
+    }
+}
+
+// Initialize authentication
+const auth = new UserAuth();
+
 document.addEventListener("DOMContentLoaded", () => {
+    // Initialize add to cart buttons
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const productId = button.dataset.productId;
+            const productCard = button.closest('.product-card');
+            const name = productCard.querySelector('h3').textContent;
+            const price = parseFloat(productCard.querySelector('.product-info p').textContent.replace('$', ''));
+            const image = productCard.querySelector('img').src;
+            
+            cart.addItem(productId, name, price, image);
+        });
+    });
+
+    // Handle product link clicks
+    document.querySelectorAll('.product-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const productId = link.closest('.product-card').dataset.productId;
+            localStorage.setItem('selectedProduct', productId);
+        });
+    });
     // Search functionality
     const searchInput = document.getElementById('search-input');
     const searchResults = document.getElementById('search-results');
@@ -249,5 +397,27 @@ accordions.forEach((accordion => {
 
     });
 }));
+
+// Newsletter Popup Trigger
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("newsletterPopup").classList.add("active");
+  }, 6000); // show popup after 6 seconds
+});
+
+// Close popup
+document.querySelector(".close-popup").addEventListener("click", () => {
+  document.getElementById("newsletterPopup").classList.remove("active");
+});
+
+// Optional: Smooth scroll for all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute("href")).scrollIntoView({
+      behavior: "smooth"
+    });
+  });
+});
 
 
